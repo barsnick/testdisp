@@ -1,15 +1,15 @@
-/* testdisp-1.1
- * © 1999-2000 Moritz Barsnick <barsnick@gmx.net>
+/* testdisp-1.2
+ * © 1999-2001 Moritz Barsnick <barsnick@gmx.net>
  *
- * A program to check whether the X11 server specified in the
- *   environment variable DISPLAY actually allows access from the
- *   user calling it.
+ * A program to check whether the X11 server specified in the argument
+ *   or, if not available, in the environment variable $DISPLAY,
+ *   actually allows access from the user calling it.
  *
  * Usage:
- * # testdisp  ($DISPLAY has to be set to the server being tested)
- * # testdisp <display>
+ * prompt> testdisp  ($DISPLAY has to be set to the server being tested)
+ * prompt> testdisp <display>
  * e.g.
- * # testdisp remotehost:0.0
+ * prompt> testdisp remotehost:0.0
  *
  * Return level (exit code):
  *   0 if display could be opened
@@ -27,6 +27,7 @@
  *   1.0	1999-06-03	first fully working and C-syntactically
  *      			correct version
  *   1.1	2000-01-21	added comments
+ *   1.2	2001-01-29	updated comments and copyright
  *
  * License: GPL
  */
