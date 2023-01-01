@@ -37,10 +37,17 @@
  *
  * Common usage:
  *
- * first and foremost in your mailcap (e.g. ~/.mailcap), to differentiate
+ * First and foremost in your mailcap (e.g. ~/.mailcap), to differentiate
  * when you have an X11 display and when not. Note that many programs
  * use mailcap, and you may not want all of them to have this behavior!
  * No more trying to start Adobe(TM) Acrobat Reader from your terminal. ;-)
+ *
+ * You'll need some lines like:
+ * image/gif; xv %s; test=testdisp 2>/dev/null; description=GIF image; nametemplate=%s.gif
+ * image/gif; zgv %s; needsterminal; description=GIF image; nametemplate=%s.gif
+ *
+ * Note the "test=" parameter in the first line using the X11 application! See
+ * RFC 1524: http://www.faqs.org/rfcs/rfc1524.html
  *
  * In my ~/.urlview (for the program "urlview"), I have this statement:
  * COMMAND URL=%s; if testdisp 2>/dev/null; then xw3m "$URL"; else w3m "$URL"; fi
