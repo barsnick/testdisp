@@ -29,6 +29,7 @@
  *   1.1	2000-01-21	added comments
  *
  * License: GPL
+ */
 
 #include <stdio.h>
 #include <stdlib.h>
