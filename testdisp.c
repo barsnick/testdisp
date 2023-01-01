@@ -1,11 +1,11 @@
-/* testdisp-1.3
- * © 1999-2001 Moritz Barsnick <barsnick@gmx.net>
+/* testdisp-1.4
+ * Copyright (c) 1999-2023 Moritz Barsnick <barsnick@gmx.net>
  *
  * A program to check whether an X11 server is available and allows access
  * from the user calling it. It checks either the display specified in the
  * argument or, if not available, in the environment variable $DISPLAY.
  *
- * Success or failure messages are sent to standard output.
+ * Success or failure messages are sent to standard error.
  *
  * -----
  *
@@ -26,7 +26,7 @@
  *
  * -----
  *
- * Compililation:
+ * Compilation:
  * prompt> gcc -Wall -o testdisp testdisp.c -lX11
  * or
  * prompt> gcc -Wall -o testdisp testdisp.c -lX11 -lsocket
@@ -40,14 +40,14 @@
  * First and foremost in your mailcap (e.g. ~/.mailcap), to differentiate
  * when you have an X11 display and when not. Note that many programs
  * use mailcap, and you may not want all of them to have this behavior!
- * No more trying to start Adobe(TM) Acrobat Reader from your terminal. ;-)
+ * No more trying to start a PDF viewer from your terminal.
  *
- * You'll need some lines like:
+ * You'll need some lines like these in ~/.mailcap:
  * image/gif; xv %s; test=testdisp 2>/dev/null; description=GIF image; nametemplate=%s.gif
  * image/gif; zgv %s; needsterminal; description=GIF image; nametemplate=%s.gif
  *
- * Note the "test=" parameter in the first line using the X11 application! See
- * RFC 1524: http://www.faqs.org/rfcs/rfc1524.html
+ * Note the "test=" parameter in the first line using this X11 application
+ * testdisp! See RFC 1524: http://www.faqs.org/rfcs/rfc1524.html
  *
  * In my ~/.urlview (for the program "urlview"), I have this statement:
  * COMMAND URL=%s; if testdisp 2>/dev/null; then xw3m "$URL"; else w3m "$URL"; fi
@@ -63,6 +63,7 @@
  *   1.3	2001-07-26	added more comments and usage info; added
  *				progname in messages; ready for public
  *				release
+ *   1.4	2023-01-01	updated comments and copyright
  *
  * License: GPL
  */
