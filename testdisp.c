@@ -1,12 +1,20 @@
-/* testdisp-1.2
+/* testdisp-1.3
  * © 1999-2001 Moritz Barsnick <barsnick@gmx.net>
  *
- * A program to check whether the X11 server specified in the argument
- *   or, if not available, in the environment variable $DISPLAY,
- *   actually allows access from the user calling it.
+ * A program to check whether an X11 server is available and allows access
+ * from the user calling it. It checks either the display specified in the
+ * argument or, if not available, in the environment variable $DISPLAY.
+ *
+ * Success or failure messages are sent to standard output.
+ *
+ * -----
  *
  * Usage:
- * prompt> testdisp  ($DISPLAY has to be set to the server being tested)
+ *
+ * prompt> testdisp  # $DISPLAY has to be set to the server being tested
+ *
+ * or
+ *
  * prompt> testdisp <display>
  * e.g.
  * prompt> testdisp remotehost:0.0
@@ -16,18 +24,38 @@
  *   1 if display could not be opened
  *   2 if wrong number of arguments was given
  *
+ * -----
+ *
  * Compililation:
- * # gcc -Wall -o testdisp testdisp.c -lX11 -lsocket
- * or similar
+ * prompt> gcc -Wall -o testdisp testdisp.c -lX11
+ * or
+ * prompt> gcc -Wall -o testdisp testdisp.c -lX11 -lsocket
+ * on Solaris,
+ * or similar.
+ *
+ * -----
+ *
+ * Common usage:
+ *
+ * first and foremost in your mailcap (e.g. ~/.mailcap), to differentiate
+ * when you have an X11 display and when not. Note that many programs
+ * use mailcap, and you may not want all of them to have this behavior!
+ * No more trying to start Adobe(TM) Acrobat Reader from your terminal. ;-)
+ *
+ * In my ~/.urlview (for the program "urlview"), I have this statement:
+ * COMMAND URL=%s; if testdisp 2>/dev/null; then xw3m "$URL"; else w3m "$URL"; fi
  *
  * Author: Moritz Barsnick <barsnick@gmx.net>
  *
  * Revision history:
- *   0.x	1999-05		various tries and fiddles :)
+ *   0.x	1999-05		various attemps and fiddles :)
  *   1.0	1999-06-03	first fully working and C-syntactically
  *      			correct version
  *   1.1	2000-01-21	added comments
  *   1.2	2001-01-29	updated comments and copyright
+ *   1.3	2001-07-26	added more comments and usage info; added
+ *				progname in messages; ready for public
+ *				release
  *
  * License: GPL
  */
@@ -43,7 +71,7 @@ int main( int argc, char **argv )
 {
   if ( argc > 2 )
   {
-    fprintf( stderr, "Too many arguments\n" );
+    fprintf( stderr, "%s: Too many arguments\n", argv[0] );
     exit(2);
   }
   
