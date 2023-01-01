@@ -88,6 +88,11 @@ int main(int argc, char **argv) {
     display = (char *)getenv("DISPLAY");
   }
 
+  if (!display) {
+    fprintf(stderr, "No display argument given and no DISPLAY environment variable set\n");
+    exit(2);
+  }
+
   hDisplay = XOpenDisplay(display);
   if (!hDisplay) {
     fprintf(stderr, "Could not open display '%s'\n", display);
